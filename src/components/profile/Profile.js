@@ -1,26 +1,46 @@
-import { Wrapper, TitleName, TextTag } from './Profile.styled';
+import {
+  Wrapper,
+  TitleName,
+  TextTag,
+  Avatar,
+  List,
+  ListItem,
+} from './Profile.styled';
+import PropTypes from 'prop-types';
 
 export const Profile = ({ username, tag, location, avatar, stats }) => {
   return (
     <Wrapper>
-      <img src={avatar} alt="User avatar" width={180} />
+      <Avatar src={avatar} alt="User avatar" />
       <TitleName> {username}</TitleName>
       <TextTag> @{tag}</TextTag>
-      <p> {location}</p>
-      <ul>
-        <li>
-          <span class="label">Followers</span>
-          <span> {stats.followers}</span>
-        </li>
-        <li>
-          <span class="label">Views</span>
-          <span> {stats.views}</span>
-        </li>
-        <li>
-          <span class="label">Likes</span>
-          <span> {stats.likes}</span>
-        </li>
-      </ul>
+      <TextTag> {location}</TextTag>
+      <List>
+        <ListItem>
+          <TextTag>Followers</TextTag>
+          <TitleName> {stats.followers}</TitleName>
+        </ListItem>
+        <ListItem>
+          <TextTag>Views</TextTag>
+          <TitleName> {stats.views}</TitleName>
+        </ListItem>
+        <ListItem>
+          <TextTag>Likes</TextTag>
+          <TitleName> {stats.likes}</TitleName>
+        </ListItem>
+      </List>
     </Wrapper>
   );
+};
+
+Profile.propTypes = {
+  username: PropTypes.string.isRequired,
+  tag: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  stats: PropTypes.shape({
+    followers: PropTypes.number.isRequired,
+    views: PropTypes.number.isRequired,
+    likes: PropTypes.number.isRequired,
+  }).isRequired,
 };
