@@ -12,18 +12,16 @@ export const ListItem = styled.li`
   padding: 20px;
 `;
 
+const colorStatus = {
+  true: 'green',
+  false: 'red',
+};
+
+const defaultColor = 'yellow';
+
 export const ItemStatus = styled.span`
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: ${props => {
-    switch (props.$level) {
-      case true:
-        return 'green';
-      case false:
-        return 'red';
-      default:
-        return 'yellow';
-    }
-  }};
+  background-color: ${props => colorStatus[props.$level] || defaultColor};
 `;
